@@ -89,6 +89,10 @@ PRODUCT_COPY_FILES += \
     vendor/lineage/config/permissions/privapp-permissions-lineage.xml:system/etc/permissions/privapp-permissions-lineage.xml \
     vendor/lineage/config/permissions/privapp-permissions-cm-legacy.xml:system/etc/permissions/privapp-permissions-cm-legacy.xml
 
+# Enforce privapp-permissions whitelist
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.control_privapp_permissions=enforce
+
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
     vendor/lineage/config/permissions/lineage-hiddenapi-package-whitelist.xml:system/etc/permissions/lineage-hiddenapi-package-whitelist.xml
@@ -146,11 +150,13 @@ PRODUCT_PACKAGES += \
     Eleven \
     ExactCalculator \
     Jelly \
-    Lawnchair \
     LockClock \
     TrebuchetQuickStep \
     Updater \
     WeatherProvider \
+    Brevent \
+    ThermalController \
+	Longshot \
     Substratum
 
 # Exchange support
@@ -179,11 +185,13 @@ PRODUCT_PACKAGES += \
     bash \
     bzip2 \
     curl \
+    getcap \
     htop \
     lib7z \
     libsepol \
     pigz \
     powertop \
+    setcap \
     unrar \
     unzip \
     vim \
@@ -225,6 +233,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
+# Lawnchair
+PRODUCT_PACKAGES += Lawnchair
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/permissions/privapp-permissions-lawnchair.xml:system/etc/permissions/privapp-permissions-lawnchair.xml \
+    vendor/lineage/prebuilt/common/etc/sysconfig/lawnchair-hiddenapi-package-whitelist.xml:system/etc/sysconfig/lawnchair-hiddenapi-package-whitelist.xml
+
+
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
@@ -251,7 +266,7 @@ endif
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay
 DEVICE_PACKAGE_OVERLAYS += vendor/lineage/overlay/common
 
-PRODUCT_VERSION_MAJOR = 16
+PRODUCT_VERSION_MAJOR = os-extended-16
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 0
 
